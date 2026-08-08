@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Psyche Horoscope | Astrology That Makes Sense</title>
+<meta name="description" content="Explore zodiac insights, cosmic guidance, and astrology articles written for the modern mind. No vague predictions. Just real perspective.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://psychehoroscope.com/">
+<meta property="og:title" content="Psyche Horoscope | Astrology That Makes Sense">
+<meta property="og:description" content="Explore zodiac insights, cosmic guidance, and astrology articles written for the modern mind.">
+<meta property="og:image" content="https://psychehoroscope.com/wp-content/uploads/2026/07/logo.png">
+<meta property="og:url" content="https://psychehoroscope.com/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg-deep: #06060f;
+    --bg-card: #0f0f2e;
+    --bg-card-hover: #161640;
+    --border-subtle: rgb(37 37 96 / 0.35);
+    --border-glow: rgb(123 63 160 / 0.4);
+    --purple: #7b3fa0;
+    --purple-soft: #a855f7;
+    --gold: #d4af37;
+    --gold-soft: #e8c84a;
+    --text-primary: #f0e8ff;
+    --text-secondary: rgb(216 208 240 / 0.72);
+    --text-faint: rgb(216 208 240 / 0.40);
+    --radius-sm: 12px;
+    --radius-md: 20px;
+    --radius-lg: 28px;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'Inter Tight', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  body { background: var(--bg-deep); color: var(--text-primary); font-family: var(--font-body); line-height: 1.6; overflow-x: hidden; }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: var(--bg-deep); }
+  ::-webkit-scrollbar-thumb { background: var(--border-subtle); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgb(53 53 128 / 0.6); }
+  ::selection { background: rgb(123 63 160 / 0.4); color: var(--text-primary); }
+
+  /* Typography */
+  h1, h2, h3 { font-family: var(--font-display); }
+  a { color: inherit; text-decoration: none; }
+
+  /* Layout */
+  .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+  .section { padding: 100px 0; }
+
+  /* Navigation */
+  .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 68px; background: rgb(6 6 15 / 0.75); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-subtle); transition: background 0.3s; }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 100%; max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+  .nav-logo { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; color: var(--text-primary); }
+  .nav-logo img { height: 32px; width: auto; }
+  .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+  .nav-links a { font-size: 0.875rem; font-weight: 500; color: var(--text-secondary); transition: color 0.2s; }
+  .nav-links a:hover { color: var(--text-primary); }
+  .nav-cta { padding: 8px 20px; border-radius: 999px; background: var(--purple); color: white; font-weight: 600; font-size: 0.875rem; transition: background 0.25s, transform 0.15s; }
+  .nav-cta:hover { background: var(--purple-soft); }
+  .nav-cta:active { transform: scale(0.97); }
+
+  /* Mobile nav */
+  .mobile-toggle { display: none; background: none; border: none; color: var(--text-primary); cursor: pointer; padding: 4px; }
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .mobile-toggle { display: block; }
+  }
+
+  /* Stars canvas */
+  #stars-canvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+
+  /* Hero */
+  .hero { position: relative; z-index: 1; min-height: 100dvh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 120px 24px 80px; }
+  .hero-eyebrow { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; }
+  .hero h1 { font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 700; line-height: 1.08; letter-spacing: -0.02em; max-width: 800px; }
+  .hero h1 span { color: var(--gold); font-style: italic; }
+  .hero-sub { font-size: 1.1rem; color: var(--text-secondary); max-width: 520px; margin: 28px auto 0; line-height: 1.7; }
+  .hero-btns { display: flex; gap: 14px; margin-top: 40px; flex-wrap: wrap; justify-content: center; }
+  .btn-primary { padding: 14px 36px; border-radius: 999px; background: var(--purple); color: white; font-weight: 600; font-size: 1rem; border: none; cursor: pointer; transition: background 0.25s, transform 0.15s, box-shadow 0.25s; }
+  .btn-primary:hover { background: var(--purple-soft); box-shadow: 0 0 32px rgb(123 63 160 / 0.35); }
+  .btn-primary:active { transform: scale(0.97); }
+  .btn-ghost { padding: 14px 36px; border-radius: 999px; background: transparent; color: var(--text-primary); font-weight: 500; font-size: 1rem; border: 1px solid var(--border-subtle); cursor: pointer; transition: border-color 0.25s, background 0.25s; }
+  .btn-ghost:hover { border-color: var(--border-glow); background: rgb(123 63 160 / 0.08); }
+
+  /* Section headers */
+  .section-header { text-align: center; margin-bottom: 64px; }
+  .section-header h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 700; line-height: 1.15; letter-spacing: -0.01em; }
+  .section-header p { color: var(--text-secondary); max-width: 500px; margin: 16px auto 0; font-size: 1.05rem; }
+
+  /* Features grid */
+  .features { position: relative; z-index: 1; }
+  .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  @media (max-width: 768px) { .features-grid { grid-template-columns: 1fr; } }
+  .feature-card { padding: 36px 28px; border-radius: var(--radius-md); background: linear-gradient(135deg, rgb(22 22 64 / 0.7), rgb(15 15 46 / 0.6)); border: 1px solid var(--border-subtle); transition: border-color 0.3s, transform 0.3s; }
+  .feature-card:hover { border-color: var(--border-glow); transform: translateY(-4px); }
+  .feature-icon { width: 48px; height: 48px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-size: 1.4rem; }
+  .feature-card h3 { font-family: var(--font-body); font-size: 1.15rem; font-weight: 600; margin-bottom: 10px; }
+  .feature-card p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.65; }
+
+  /* Articles preview */
+  .articles { position: relative; z-index: 1; }
+  .articles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  @media (max-width: 768px) { .articles-grid { grid-template-columns: 1fr; } }
+  .article-card { border-radius: var(--radius-md); overflow: hidden; background: linear-gradient(135deg, rgb(22 22 64 / 0.5), rgb(15 15 46 / 0.4)); border: 1px solid var(--border-subtle); transition: border-color 0.3s, transform 0.3s; }
+  .article-card:hover { border-color: var(--border-glow); transform: translateY(-4px); }
+  .article-card-img { width: 100%; height: 180px; object-fit: cover; display: block; }
+  .article-card-body { padding: 22px 20px; }
+  .article-card-tag { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--purple-soft); margin-bottom: 10px; }
+  .article-card h3 { font-family: var(--font-body); font-size: 1.05rem; font-weight: 600; line-height: 1.35; }
+  .article-card-date { font-size: 0.8rem; color: var(--text-faint); margin-top: 12px; }
+
+  /* Newsletter */
+  .newsletter { position: relative; z-index: 1; }
+  .newsletter-box { max-width: 640px; margin: 0 auto; padding: 56px 48px; border-radius: var(--radius-lg); background: linear-gradient(135deg, rgb(22 22 64 / 0.8), rgb(15 15 46 / 0.6)); border: 1px solid var(--border-subtle); text-align: center; }
+  .newsletter-box h2 { font-size: 2rem; font-weight: 700; margin-bottom: 12px; }
+  .newsletter-box p { color: var(--text-secondary); margin-bottom: 28px; font-size: 0.95rem; }
+  .newsletter-form { display: flex; gap: 10px; max-width: 440px; margin: 0 auto; }
+  @media (max-width: 480px) { .newsletter-form { flex-direction: column; } }
+  .newsletter-form input { flex: 1; padding: 14px 20px; border-radius: 999px; border: 1px solid var(--border-subtle); background: rgb(6 6 15 / 0.6); color: var(--text-primary); font-size: 0.95rem; font-family: var(--font-body); outline: none; transition: border-color 0.25s; }
+  .newsletter-form input:focus { border-color: var(--purple); }
+  .newsletter-form input::placeholder { color: var(--text-faint); }
+  .newsletter-form button { padding: 14px 28px; border-radius: 999px; background: var(--purple); color: white; font-weight: 600; font-size: 0.95rem; border: none; cursor: pointer; white-space: nowrap; transition: background 0.25s; }
+  .newsletter-form button:hover { background: var(--purple-soft); }
+
+  /* Footer */
+  .footer { position: relative; z-index: 1; border-top: 1px solid var(--border-subtle); padding: 48px 0 32px; }
+  .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
+  .footer-text { font-size: 0.85rem; color: var(--text-faint); }
+  .footer-links { display: flex; gap: 24px; list-style: none; }
+  .footer-links a { font-size: 0.85rem; color: var(--text-secondary); transition: color 0.2s; }
+  .footer-links a:hover { color: var(--text-primary); }
+
+  /* Scroll reveal */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    #stars-canvas { display: none; }
+    * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="stars-canvas"></canvas>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <svg width="28" height="28" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="#d4af37" stroke-width="2.5" opacity="0.6"/><circle cx="24" cy="24" r="14" stroke="#d4af37" stroke-width="1.5" opacity="0.35"/><circle cx="24" cy="24" r="4" fill="#d4af37" opacity="0.9"/><line x1="24" y1="2" x2="24" y2="10" stroke="#d4af37" stroke-width="1.2" opacity="0.5"/><line x1="24" y1="38" x2="24" y2="46" stroke="#d4af37" stroke-width="1.2" opacity="0.5"/><line x1="2" y1="24" x2="10" y2="24" stroke="#d4af37" stroke-width="1.2" opacity="0.5"/><line x1="38" y1="24" x2="46" y2="24" stroke="#d4af37" stroke-width="1.2" opacity="0.5"/></svg>
+      Psyche Horoscope
+    </a>
+    <ul class="nav-links">
+      <li><a href="https://psychehoroscope.com/category/astrology-articles/">Articles</a></li>
+      <li><a href="https://psychehoroscope.com/">Blog</a></li>
+      <li><a href="#newsletter" class="nav-cta">Subscribe</a></li>
+    </ul>
+    <button class="mobile-toggle" aria-label="Menu">☰</button>
+  </div>
+</nav>
+
+<section class="hero">
+  <p class="hero-eyebrow reveal">Understand the stars. Understand yourself.</p>
+  <h1 class="reveal">Astrology that <span>actually</span> makes sense</h1>
+  <p class="hero-sub reveal">No vague newspaper predictions. No cosmic jargon. Just honest, grounded astrology articles that connect the dots between your sign and your real life.</p>
+  <div class="hero-btns reveal">
+    <a href="https://psychehoroscope.com/category/astrology-articles/" class="btn-primary">Explore Articles</a>
+    <a href="#newsletter" class="btn-ghost">Get Weekly Insights</a>
+  </div>
+</section>
+
+<section class="features section">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>What you will find here</h2>
+      <p>No fluff. Just grounded astrology content written for curious minds.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card reveal">
+        <div class="feature-icon" style="background:rgb(212 175 55 / 0.12); color:var(--gold);">✦</div>
+        <h3>Deep Zodiac Guides</h3>
+        <p>Detailed breakdowns of how each sign behaves in love, stress, friendship, and growth. Not just sun-sign stereotypes.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon" style="background:rgb(168 85 247 / 0.12); color:var(--purple-soft);">◈</div>
+        <h3>Relationship Astrology</h3>
+        <p>From Venus signs to zodiac compatibility, learn how the planets shape your connections with the people who matter most.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon" style="background:rgb(168 85 247 / 0.12); color:var(--purple-soft);">◉</div>
+        <h3>Practical Self-Knowledge</h3>
+        <p>Use your chart as a tool for self-awareness. Understand your patterns, strengths, and triggers through an astrological lens.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="articles section">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>Latest from the blog</h2>
+      <p>New articles every week. Smart, readable, and always on point.</p>
+    </div>
+    <div class="articles-grid">
+      <a href="https://psychehoroscope.com/mercury-retrograde-survival-guide/" class="article-card reveal" target="_blank" rel="noopener">
+        <img src="https://psychehoroscope.com/wp-content/uploads/2026/07/Mercury-Retrograde-1.jpg" alt="Mercury Retrograde Survival Guide" class="article-card-img" loading="lazy">
+        <div class="article-card-body">
+          <p class="article-card-tag">Planetary</p>
+          <h3>Mercury Retrograde Survival Guide: What to Expect and How to Navigate It</h3>
+          <p class="article-card-date">July 22, 2026</p>
+        </div>
+      </a>
+      <a href="https://psychehoroscope.com/why-do-some-couples-just-click-astrology-offers-one-explanation/" class="article-card reveal" target="_blank" rel="noopener">
+        <img src="https://psychehoroscope.com/wp-content/uploads/2026/07/zodiac-couple-compatibility-1.jpg" alt="Zodiac Couple Compatibility" class="article-card-img" loading="lazy">
+        <div class="article-card-body">
+          <p class="article-card-tag">Relationships</p>
+          <h3>Why Do Some Couples Just Click? Astrology Offers One Explanation</h3>
+          <p class="article-card-date">August 6, 2026</p>
+        </div>
+      </a>
+      <a href="https://psychehoroscope.com/debunked-astrology-myths/" class="article-card reveal" target="_blank" rel="noopener">
+        <img src="https://psychehoroscope.com/wp-content/uploads/2026/07/astrology-myths-debunked-1.jpg" alt="Debunked Astrology Myths" class="article-card-img" loading="lazy">
+        <div class="article-card-body">
+          <p class="article-card-tag">Basics</p>
+          <h3>Common Astrology Myths You Can Stop Believing Today</h3>
+          <p class="article-card-date">August 1, 2026</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="newsletter section" id="newsletter">
+  <div class="container">
+    <div class="newsletter-box reveal">
+      <h2>Cosmic insights, straight to your inbox</h2>
+      <p>One email per week. Zero spam. New articles, moon phase notes, and the occasional zodiac deep-dive.</p>
+      <form class="newsletter-form" action="#" method="post">
+        <input type="email" name="email" placeholder="Your email address" required aria-label="Email address">
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <p class="footer-text">Psyche Horoscope. For informational and entertainment purposes only.</p>
+      <ul class="footer-links">
+        <li><a href="https://psychehoroscope.com/">Blog</a></li>
+        <li><a href="https://psychehoroscope.com/category/astrology-articles/">Articles</a></li>
+        <li><a href="mailto:ljkoxo35@gmail.com">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function() {
+  /* Stars animation */
+  const canvas = document.getElementById('stars-canvas');
+  const ctx = canvas.getContext('2d');
+  let stars = [];
+  let w, h;
+
+  function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', () => { resize(); initStars(); });
+
+  function initStars() {
+    stars = [];
+    const count = Math.floor((w * h) / 2800);
+    for (let i = 0; i < count; i++) {
+      stars.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        r: Math.random() * 1.4 + 0.3,
+        a: Math.random(),
+        da: (Math.random() - 0.5) * 0.015,
+        maxA: Math.random() * 0.5 + 0.4,
+        minA: Math.random() * 0.15,
+        phase: Math.random() * Math.PI * 2
+      });
+    }
+  }
+
+  function draw(t) {
+    ctx.clearRect(0, 0, w, h);
+    for (const s of stars) {
+      const alpha = s.minA + (s.maxA - s.minA) * (0.5 + 0.5 * Math.sin(t * 0.0008 + s.phase));
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgb(216 208 240 / ${alpha.toFixed(2)})`;
+      ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  }
+
+  initStars();
+  requestAnimationFrame(draw);
+
+  /* Scroll reveal */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  /* Trigger visible for elements already in view on load */
+  setTimeout(() => {
+    document.querySelectorAll('.reveal').forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight) el.classList.add('visible');
+    });
+  }, 100);
+})();
+</script>
+</body>
+</html>
